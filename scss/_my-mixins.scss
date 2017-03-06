@@ -1,0 +1,75 @@
+
+// Background Image Cover
+
+@mixin background-img-cover{
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+@mixin panel{
+		min-height: 100%;
+		@include breakpoint(small) {
+			padding:  25px 25px;
+		}
+		@include breakpoint(medium) {
+			padding:  50px 50px;
+		}
+
+	    .panel-content{
+					@include breakpoint(small) {
+						position: relative;
+						margin-top: 25%;
+						margin-right: 0px;
+					}
+					@include breakpoint(medium) {
+						position: relative;
+						margin-top: 5%;
+						margin-right: 50px;
+					}
+					@include breakpoint(xlarge) {
+						position: absolute;
+						bottom: 50px;
+						margin-right: 50px;
+					}
+	    }
+
+	}
+
+// Panel Leistungsübersicht
+
+@mixin leistung-panel{
+        height: 100%;
+        position: relative;
+
+				@include breakpoint(small) {
+					background: rgba(150,180,222,0.8);
+				}
+				@include breakpoint(medium) {
+					background: transparent;
+
+				}
+
+        .panel-content{
+            position: absolute;
+						min-height: 33.3333%;
+
+						@include breakpoint(small) {
+							background: transparent;
+
+							bottom: 0px;
+							left: 0;
+							padding:  25px 5px 25px 5px;
+							margin: 0 0;
+						}
+						@include breakpoint(medium) {
+							background: rgba(150,180,222,0.8);
+
+							bottom: 50px;
+							padding:  25px 10px;
+							margin-right: 50px;
+						}
+        }
+
+    }

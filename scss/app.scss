@@ -1,0 +1,1206 @@
+@charset 'utf-8';
+
+@import 'settings';
+@import 'foundation';
+@import "../assets/fonts/fonts";
+@import 'my-mixins';
+@import 'jquery.fullPage';
+
+
+@include foundation-global-styles;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-button;
+// @include foundation-forms;
+@include foundation-visibility-classes;
+// @include foundation-float-classes;
+// @include foundation-accordion;
+// @include foundation-badge;
+// @include foundation-breadcrumbs;
+// @include foundation-button-group;
+// @include foundation-callout;
+@include foundation-close-button;
+// @include foundation-drilldown-menu;
+// @include foundation-dropdown;
+// @include foundation-dropdown-menu;
+// @include foundation-flex-video;
+// @include foundation-label;
+// @include foundation-media-object;
+// @include foundation-menu;
+// @include foundation-off-canvas;
+// @include foundation-orbit;
+// @include foundation-pagination;
+// @include foundation-progress-bar;
+// @include foundation-slider;
+// @include foundation-sticky;
+// @include foundation-reveal;
+// @include foundation-switch;
+// @include foundation-table;
+// @include foundation-tabs;
+// @include foundation-thumbnail;
+// @include foundation-title-bar;
+// @include foundation-tooltip;
+// @include foundation-top-bar;
+
+// @include motion-ui-transitions;
+// @include motion-ui-animations;
+
+/////////////////// General Colors /////////////////////////////
+
+$black-blue: #232033;
+$dark-blue: #21275a;
+$blue-01: #003b77;
+$blue-02: #4b5d9d;
+$azur: #4e8cca;
+$azur-65: #95b2de;
+$gray: #d4d3d2;
+$gray-80: #dcdcdb;
+
+/////////////////// General Style /////////////////////////////
+
+*{letter-spacing: .05em;}
+a{text-transform: uppercase;}
+p{
+	margin-bottom: 5%;
+
+	@include breakpoint(small) {
+		/* hyphens */
+		-moz-hyphens: auto;
+		-o-hyphens: auto;
+		-webkit-hyphens: auto;
+		-ms-hyphens: auto;
+		hyphens: auto;
+	}
+	@include breakpoint(xlarge) {
+		/* hyphens */
+		-moz-hyphens: none;
+		-o-hyphens: none;
+		-webkit-hyphens: none;
+		-ms-hyphens: none;
+		hyphens: none;
+	}
+}
+
+h1, h2, h3, h4, h5 {
+	text-transform: uppercase;
+	letter-spacing: .13rem;
+}
+
+body {
+	////// Font-Size //////////
+
+	@include breakpoint(small) {
+	/* Small only */
+	font-size: .8rem;
+	}
+	@include breakpoint(medium) {
+	/* Small only */
+	font-size: .8rem;
+	}
+	@include breakpoint(large) {
+	/* Small only */
+	font-size: 1rem;
+	}
+	@include breakpoint(xlarge) {
+	/* Small only */
+	font-size: 1rem;
+	}
+	@include breakpoint(xxlarge) {
+	/* Small only */
+	font-size: 1.2rem;
+	}
+
+
+	background-color: $black-blue;
+	// animation-delay: 5ms;
+	-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+		 -moz-animation: fadein 2s; /* Firefox < 16 */
+			-ms-animation: fadein 2s; /* Internet Explorer */
+			 -o-animation: fadein 2s; /* Opera < 12.1 */
+					animation: fadein 2s;
+	}
+
+	@keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Firefox < 16 */
+	@-moz-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Safari, Chrome and Opera > 12.1 */
+	@-webkit-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Internet Explorer */
+	@-ms-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Opera < 12.1 */
+	@-o-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+
+.scrollDown{min-width: 12rem;}
+
+
+header {
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+	background-color: transparent;
+
+	h1.logo {
+	    display: block;
+	    height: auto;
+	    float: right;
+			@include breakpoint(small) {
+				/* Small only */
+				margin: 25px 25px;
+		    width: 150px;
+			}
+			@include breakpoint(medium) {
+				/* Small only */
+				margin: 25px 50px;
+		    width: 150px;
+			}
+			@include breakpoint(large) {
+				/* medium up */
+				margin: 50px 50px;
+		    width: 200px;
+			}
+		}
+	}
+
+	/////////////////////// Site Preloader /////////////////////
+
+#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; height: 100%; overflow: visible; background: $black-blue url('../assets/img/ring.svg') no-repeat center center; }
+
+
+	/////////////////////// Hamburger Menu /////////////////////
+
+	.b-a {
+	   transition: all .25s;
+	   content: "";
+	   position: absolute;
+	   left: 0;
+	   height: 3px;
+	   width: 40px;
+	   border-radius: 0px;
+	   background-color: rgba(255, 255, 255, 0.95);
+	}
+	.menu-collapsed {
+	   transition: all .25s;
+	   position: fixed;
+	   top: 0px;
+	   left: 0px;
+	   height: 80px;
+	   width: 100px;
+	   z-index: 200;
+	   cursor: pointer;
+	   ul {
+	      transition: all 0s;
+	      position: fixed;
+	      left: -9000px;
+	   }
+	}
+	.bar {
+	   @extend .b-a;
+	   position: fixed;
+	   &:before {
+	      @extend .b-a;
+	      top: -10px;
+	   }
+	   &:after {
+	      @extend .b-a;
+	      top: 10px;
+	   }
+		 @include breakpoint(small) {
+			 /* Small only */
+			 left: 25px;
+		   top: 38px;
+		 }
+		 @include breakpoint(medium) {
+			 /* Small only */
+			 left: 50px;
+		   top: 38px;
+		 }
+		 @include breakpoint(large) {
+			 /* medium up */
+			 left: 50px;
+		   top: 60px;
+		 }
+	}
+
+	/////////////////////// Overlay Menu /////////////////////
+
+	.b-a-expanded {
+	   transition: all .25s;
+	   top: -0px;
+	}
+	.menu-expanded {
+		transition: all .25s;
+		line-height: 200px;
+		height: 100vh;
+		width: 100vw;
+		border-radius: 0px;
+		top: 0;
+		left: 0;
+		background-color: rgba(26,32,50,.95);
+
+		position: relative;
+
+
+		ul.main-menu {
+			transition: all 0s;
+			position: absolute;
+			@include breakpoint(small) {
+				left: 7%;
+			}
+			@include breakpoint(medium) {
+				left: 16.666%;
+			}
+			z-index: 5;
+			font-family: "geomanistextralight";
+
+	 		a {
+	 			color: $azur;
+				transition: all .7s;
+				opacity: 1;
+
+				&:hover {
+					opacity: 0.5;
+				}
+			}
+			-ms-transform: translateY(50%);
+			transform: translateY(50%);
+
+		    @include breakpoint(small) {
+		        font-size: 1.9rem;
+		    }
+
+		    @include breakpoint(medium) {
+					@media screen and (max-height: 600px) {
+						font-size: 2.2rem;
+						transform: translateY(25%);
+					}
+					@media screen and (min-height: 731px) {
+						font-size: 2.2rem;
+						transform: translateY(45%);
+
+					}
+		    }
+
+		    @include breakpoint(large) {
+					@media screen and (max-height: 668px) {
+						font-size: 2.2rem;
+						transform: translateY(25%);
+					}
+					@media screen and (min-height: 669px) {
+						font-size: 2.5rem;
+					}
+					@media screen and (min-height: 801px) {
+						font-size: 3rem;
+					}
+					@media screen and (min-height: 900px) {
+						font-size: 3.5rem;
+					}
+					@media screen and (min-height: 1050px) {
+						font-size: 4rem;
+					}
+		    }
+		    @include breakpoint(xlarge) {
+					@media screen and (max-height: 668px) {
+						font-size: 2.6rem;
+						transform: translateY(25%);
+					}
+					@media screen and (min-height: 669px) {
+						font-size: 2.8rem;
+					}
+					@media screen and (min-height: 801px) {
+						font-size: 3rem;
+					}
+					@media screen and (min-height: 900px) {
+						font-size: 3.5rem;
+					}
+					@media screen and (min-height: 1050px) {
+						font-size: 4rem;
+					}
+		    }
+		    @include breakpoint(xxlarge) {
+					@media screen and (max-height: 800px) {
+						font-size: 2rem;
+					}
+					@media screen and (min-height: 801px) {
+						font-size: 3rem;
+					}
+					@media screen and (min-height: 900px) {
+						font-size: 3.5rem;
+					}
+					@media screen and (min-height: 1050px) {
+						font-size: 4.5rem;
+					}
+		    }
+
+			ul.sub{
+				position: relative;
+				left: 55px;
+
+			    @include breakpoint(small) {
+			        font-size: 1.5rem;
+			    }
+			    @include breakpoint(medium) {
+			        font-size: 1.8rem;
+			    }
+			    @include breakpoint(large) {
+			        font-size: 1.8rem;
+			    }
+			    @include breakpoint(xlarge) {
+			    		/* screen size smaller than 800px */
+						@media screen and (max-height: 800px) {
+							font-size: 1.3rem;
+						}
+						/* screen size larger than 800px */
+						@media screen and (min-height: 801px) {
+							font-size: 1.7rem;
+						}
+						/* screen size larger than 900px */
+						@media screen and (min-height: 900px) {
+							font-size: 1.9rem;
+						}
+						/* screen size larger than 1050 */
+						@media screen and (min-height: 1050px) {
+							font-size: 2rem;
+						}
+			    }
+			    @include breakpoint(xxlarge) {
+			    		/* screen size smaller than 800px */
+						@media screen and (max-height: 800px) {
+							font-size: 1.3rem;
+						}
+						/* screen size larger than 800px */
+						@media screen and (min-height: 801px) {
+							font-size: 1.7rem;
+						}
+						/* screen size larger than 900px */
+						@media screen and (min-height: 900px) {
+							font-size: 2rem;
+						}
+						/* screen size larger than 1050 */
+						@media screen and (min-height: 1050px) {
+							font-size: 2.5rem;
+						}
+			    }
+			    a{color: $azur-65;}
+			}
+		}
+
+	   .bar {
+	      background-color: transparent;
+	      transition: all .25s;
+	      &:before {
+	         @extend .b-a-expanded;
+	         transform: rotate(45deg);
+	      }
+	      &:after {
+	         @extend .b-a-expanded;
+	         transform: rotate(-45deg);
+	      }
+	   }
+	}
+
+
+/////////////////// start BG Image transition /////////////////////////////
+
+ #BG-image{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	animation-delay: 10ms;
+	-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+		 -moz-animation: fadein 2s; /* Firefox < 16 */
+			-ms-animation: fadein 2s; /* Internet Explorer */
+			 -o-animation: fadein 2s; /* Opera < 12.1 */
+					animation: fadein 2s;
+
+	@keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Firefox < 16 */
+	@-moz-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Safari, Chrome and Opera > 12.1 */
+	@-webkit-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Internet Explorer */
+	@-ms-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Opera < 12.1 */
+	@-o-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+
+
+    img.slide-img {
+        position: absolute;
+        object-fit: cover;
+        min-width: 100%;
+				min-height: 100%;
+    }
+
+	img {
+	  position: absolute;
+	  transition: opacity 1.0s ease-in;
+	}
+
+	img + img { opacity: 0; }
+}
+
+/////////////////// End BG Image transition  /////////////////////////////
+
+
+
+#home-section{
+	color: white;
+	background: no-repeat center center url("../assets/img/BG-l.png") #000;
+	box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.3);
+	@include background-img-cover;
+	.panel{
+		@include panel;
+	}
+
+	h1{
+		color: $azur-65;
+		display: block;
+		font-family: "geomanistextralight";
+		margin-bottom: 3%;
+
+	  @include breakpoint(small) {
+				@media screen and (max-height: 568px) {
+				font-size: 1.5rem;
+				}
+				@media screen and (min-height: 569px) {
+				font-size: 1.5rem;
+				}
+				@media screen and (min-height: 651px) {
+					font-size: 1.7rem;
+				}
+			}
+
+    @include breakpoint(medium) {
+				@media screen and (max-height: 410px) {
+					font-size: 1.8rem;
+				}
+				@media screen and (min-height: 411px) {
+					font-size: 2rem;
+				}
+				@media screen and (min-height: 480px) {
+					font-size: 2.2rem;
+				}
+				@media screen and (min-height: 600px) {
+					font-size: 2.6rem;
+				}
+				@media screen and (min-height: 801px) {
+					font-size: 2.4rem;
+				}
+				@media screen and (min-height: 900px) {
+					font-size: 2.5rem;
+				}
+				@media screen and (min-height: 1024px) {
+					font-size: 3rem;
+				}
+	    }
+
+
+    @include breakpoint(large) {
+			/* Small only */
+				@media screen and (max-height: 650px) {
+					font-size: 2.2rem;
+				}
+	    		/* Small only */
+				@media screen and (min-height: 651px) {
+					font-size: 2.7rem;
+				}
+	    		/* Small only */
+				@media screen and (min-height: 721px) {
+					font-size: 3.7rem;
+				}
+				/* Medium and up */
+				@media screen and (min-height: 801px) {
+					font-size: 4rem;
+				}
+				/* Medium and up */
+				@media screen and (min-height: 900px) {
+					font-size: 4.5rem;
+				}
+				/* Small only */
+				@media screen and (min-height: 1050px) {
+					font-size: 5rem;
+				}
+				/* Medium and up */
+				@media screen and (min-height: 1280px) {
+					font-size: 6rem;
+				}
+	    }
+
+
+    @include breakpoint(xlarge) {
+				@media screen and (max-height: 800px) {
+					font-size: 3.2rem;
+				}
+				@media screen and (min-height: 801px) {
+					font-size: 4rem;
+				}
+				@media screen and (min-height: 900px) {
+					font-size: 4.5rem;
+				}
+				@media screen and (min-height: 1050px) {
+					font-size: 5rem;
+				}
+				@media screen and (min-height: 1280px) {
+					font-size: 6rem;
+				}
+	    }
+
+
+	    @include breakpoint(xxlarge) {
+				@media screen and (max-height: 800px) {
+					font-size: 3.2rem;
+				}
+				@media screen and (min-height: 801px) {
+					font-size: 4.3rem;
+				}
+				@media screen and (min-height: 900px) {
+					font-size: 5rem;
+				}
+				@media screen and (min-height: 1050px) {
+					font-size: 5.2rem;
+				}
+				@media screen and (min-height: 1280px) {
+					font-size: 7rem;
+				}
+	    }
+	}
+}
+
+#unternehmen-section{
+	@include background-img-cover;
+	.panel{
+  	background: linear-gradient(180deg, rgba(0,0,22,0.9), rgba(78,141,203,0.8) );
+		@include panel;
+		@include breakpoint(small){ width: 100%; }
+		@include breakpoint(large){ width: 50%; float:right;}
+		h1{
+			color: $azur;
+		}
+	}
+}
+
+#leistung-section{
+	@include background-img-cover;
+	background-color: rgba(78,141,203,0.8);
+	img {
+		display: block;
+		margin-top: 1rem;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 200px;
+	}
+
+	.panel{
+		@include panel;
+		p {
+			color: $dark-blue;
+			margin-bottom: 2rem;
+			padding: 0px;
+		}
+	}
+
+	a {
+		color: $gray;
+		font-size: $global-font-size - 15;
+		text-align: center;
+	  text-decoration: underline;
+		background: transparent;
+		opacity: 1;
+		margin-bottom: 0;
+
+		&:hover {
+		opacity:.6;
+		transition: all 0.3s ease;
+		}
+		&:active {
+		opacity:.8;
+		}
+
+		img{
+			@include breakpoint(small) {
+				width:50%;
+			}
+			@include breakpoint(medium) {
+				width:75%;;
+			}
+		}
+	}
+
+	button {
+		position: absolute;
+          bottom: 0px;
+          right: 0px;
+          margin: 0px;
+	}
+}
+
+
+#l-be-btn{
+	animation-duration: 1s;
+ 	animation-delay: .2s;
+}
+#l-pl-btn{
+	animation-duration: 1s;
+ 	animation-delay: .5s;
+}
+#l-de-btn{
+	animation-duration: 1s;
+ 	animation-delay: .8s;
+}
+
+
+#kontakt-section{
+	@include background-img-cover;
+	.panel{
+	  	background: linear-gradient(180deg, rgba(78,141,203,0.8), rgba(0,0,22,0.9) );
+		@include panel;
+		h1{
+			color: $dark-blue;
+		}
+		ul{
+			@include breakpoint(small){
+				margin-bottom: 0%;
+			}
+			@include breakpoint(medium){
+				margin-bottom: 0%;
+			}
+			@include breakpoint(large){
+				margin-bottom: 15%;
+			}
+		}
+
+		.hollow {
+    		border-color: $azur;
+    		color: $azur;
+    		opacity: 1;
+    		&:hover{
+				transition: all 0.3s ease;
+				opacity: 0.5;
+    			}
+			}
+		li{
+			a {
+				color: $gray;
+			  	text-decoration: underline;
+			  	text-transform: none;
+				opacity: 1;
+
+				&:hover {
+			    	opacity:.6;
+				    transition: all 0.3s ease;
+				}
+				&:active {
+				    opacity:.8;
+				}
+			}
+			&:last-child {
+				line-height: 4rem;
+			}
+
+		}
+
+	}
+}
+
+////////////////////// Service Page /////////////////////////
+
+#beratung,
+#planung,
+#design {
+	position: relative;
+	min-height: 100%;
+
+	////////////////////// Arrow Button /////////////////////////
+
+		.button {
+			float: right;
+
+			@include breakpoint(small) {
+				width: 50%;
+				padding: 0.30em .6em;
+				// transform: translateX(30%);
+			}
+			@include breakpoint(large) {
+				width: 30%;
+				padding: 0.85em 1em;
+				transform: translateX(0%);
+			}
+		}
+		.btn-border {
+		  background-color: transparent;
+		  color: $dark-blue;
+		}
+
+		.btn-arrow {
+		  position: relative;
+		    transition: background-color 300ms ease-out;
+		  span {
+		  	text-transform: uppercase;
+		    display: inline-block;
+		    position: relative;
+		    transition: all 300ms ease-out;
+		    will-change: transform;
+		  }
+		  &:hover span {
+		    transform: translate3d(-1rem, 0, 0);
+		  }
+		  svg {
+		    position: absolute;
+		    width: 1.1em;
+		    right: 0px;
+		    right: 0rem;
+		    opacity: 0;
+		    top: 50%;
+		    transform: translateY(-50%);
+		    transition: all 300ms ease-out;
+		    will-change: right, opacity;
+		    * {
+		      stroke-width: 3;
+		      stroke-color: transparent;
+		    }
+		  }
+		  &:hover svg {
+		    opacity: 1;
+		    right: -2rem;
+		  }
+		}
+
+
+	.panel{
+		@include leistung-panel;
+		ul{
+			color: $dark-blue;
+			text-align: center;
+			a.back-btn {
+				color: $gray;
+				text-decoration: underline;
+				line-height: 5rem;
+
+				&:hover {
+					color: $dark-blue;
+			    	opacity:.9;
+				    transition: all 0.3s ease;
+				}
+				&:active {
+				    opacity:.6;
+				}
+			}
+		}
+		p {
+			color: $blue-02;
+		}
+		.close-button{
+			font-size: 3rem;
+			color: $dark-blue;
+		}
+	}
+}
+
+#beratung{
+	background: no-repeat center center url("../assets/img/BG-beratung.jpg") #000;
+	@include background-img-cover;
+}
+#planung{
+	background: no-repeat center center url("../assets/img/BG-planung.jpg") #000;
+	@include background-img-cover;
+}
+#design{
+	background: no-repeat center center url("../assets/img/bg-img/BILDTEST3.jpg") #000;
+	@include background-img-cover;
+}
+
+
+////////////////////// Slick Carousel /////////////////////////
+
+.slider {
+	border: 1px solid blue;
+    height: 100vh;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: black;
+}
+
+
+
+///////////// animate.css fadeIn options here
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInLeft {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+}
+
+@-webkit-keyframes fadeInLeftBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-2000px, 0, 0);
+    transform: translate3d(-2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeftBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-2000px, 0, 0);
+    transform: translate3d(-2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInLeftBig {
+  -webkit-animation-name: fadeInLeftBig;
+  animation-name: fadeInLeftBig;
+}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+
+@-webkit-keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRightBig {
+  -webkit-animation-name: fadeInRightBig;
+  animation-name: fadeInRightBig;
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+
+@-webkit-keyframes fadeInUpBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 2000px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUpBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 2000px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInUpBig {
+  -webkit-animation-name: fadeInUpBig;
+  animation-name: fadeInUpBig;
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+@-webkit-keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.fadeOutDown {
+  -webkit-animation-name: fadeOutDown;
+  animation-name: fadeOutDown;
+}
+
+@-webkit-keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.fadeOutLeft {
+  -webkit-animation-name: fadeOutLeft;
+  animation-name: fadeOutLeft;
+}
+
+
+@-webkit-keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.fadeOutRight {
+  -webkit-animation-name: fadeOutRight;
+  animation-name: fadeOutRight;
+}
+
+
+
+@mixin img-bg-cover {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+}
+.test {@include img-bg-cover;
+	border: 1px solid red;
+
+}
